@@ -1,5 +1,7 @@
 package com.rimidev.evaluator;
 
+import com.rimidev.converter.InfixToPostfixConverter;
+
 /**
  * 
  * @author maximelacasse
