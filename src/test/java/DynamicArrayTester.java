@@ -34,7 +34,8 @@ public class DynamicArrayTester {
     
     @Test
     public void testAddAtTheEndOfTheArrayWhenFullyOccupied(){
-        for (int i = 0; i < 10; i++){
+        array.add("Testing");
+        for (int i = 1; i < 10; i++){
             String test = "Testing" + i;
             array.add(i,test);
         }
@@ -53,19 +54,20 @@ public class DynamicArrayTester {
     public void testAddAtIndex(){
         String test = "Testing";
         
-        array.add(0,test);
+        array.add(test);
+        array.add(1,test);
         
         log.debug("Array size: " + array.size());
         
         Assert.assertEquals("The object is in the array at the correct index",
-                array.get(0), test);
+                array.get(1), test);
     }
     //WORKS
     @Test
     public void testAddAtIndexWhenOccupiedIndex(){
         String test = "FirstAdd";
         
-        array.add(0,test);
+        array.add(test);
         
         String test2 = "SecondAdd";
         
@@ -103,7 +105,7 @@ public class DynamicArrayTester {
     public void testIndexOf(){
         String test = "Testing";
         
-        array.add(0,test);
+        array.add(test);
         
         int index = array.indexOf(test);
         
@@ -115,7 +117,7 @@ public class DynamicArrayTester {
     public void testRemoveAtIndex(){
         String test = "Testing";
         
-        array.add(0,test);
+        array.add(test);
         
         array.remove(0);
         

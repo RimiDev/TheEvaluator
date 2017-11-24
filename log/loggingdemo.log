@@ -497,3 +497,71 @@
 [DEBUG] 2017-11-23 18:37:56.290 [main] DynamicArray - Container: 8: null
 [DEBUG] 2017-11-23 18:37:56.290 [main] DynamicArray - new size: 0
 [DEBUG] 2017-11-23 18:51:04.311 [main] DynamicArrayTester - Array size: 1
+[DEBUG] 2017-11-23 19:11:26.955 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:11:26.958 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:11:26.964 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:11:26.965 [main] DynamicArray - SHIFTING: 0: null
+[DEBUG] 2017-11-23 19:11:26.965 [main] DynamicArray - Container: 1: null
+[DEBUG] 2017-11-23 19:11:26.966 [main] DynamicArray - Container: 2: null
+[DEBUG] 2017-11-23 19:11:26.966 [main] DynamicArray - Container: 3: null
+[DEBUG] 2017-11-23 19:11:26.966 [main] DynamicArray - Container: 4: null
+[DEBUG] 2017-11-23 19:11:26.967 [main] DynamicArray - Container: 5: null
+[DEBUG] 2017-11-23 19:11:26.967 [main] DynamicArray - Container: 6: null
+[DEBUG] 2017-11-23 19:11:26.967 [main] DynamicArray - Container: 7: null
+[DEBUG] 2017-11-23 19:11:26.967 [main] DynamicArray - Container: 8: null
+[DEBUG] 2017-11-23 19:11:26.968 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.045 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.047 [main] DynamicArray - SHIFTING: 0: null
+[DEBUG] 2017-11-23 19:14:25.048 [main] DynamicArray - Container: 1: null
+[DEBUG] 2017-11-23 19:14:25.048 [main] DynamicArray - Container: 2: null
+[DEBUG] 2017-11-23 19:14:25.048 [main] DynamicArray - Container: 3: null
+[DEBUG] 2017-11-23 19:14:25.048 [main] DynamicArray - Container: 4: null
+[DEBUG] 2017-11-23 19:14:25.048 [main] DynamicArray - Container: 5: null
+[DEBUG] 2017-11-23 19:14:25.048 [main] DynamicArray - Container: 6: null
+[DEBUG] 2017-11-23 19:14:25.048 [main] DynamicArray - Container: 7: null
+[DEBUG] 2017-11-23 19:14:25.048 [main] DynamicArray - Container: 8: null
+[DEBUG] 2017-11-23 19:14:25.049 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.050 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.053 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.053 [main] DynamicArray - Container: 1: null
+[DEBUG] 2017-11-23 19:14:25.053 [main] DynamicArray - SHIFTING: 1: FirstAdd
+[DEBUG] 2017-11-23 19:14:25.053 [main] DynamicArray - Container: 2: null
+[DEBUG] 2017-11-23 19:14:25.053 [main] DynamicArray - Container: 3: null
+[DEBUG] 2017-11-23 19:14:25.053 [main] DynamicArray - Container: 4: null
+[DEBUG] 2017-11-23 19:14:25.053 [main] DynamicArray - Container: 5: null
+[DEBUG] 2017-11-23 19:14:25.053 [main] DynamicArray - Container: 6: null
+[DEBUG] 2017-11-23 19:14:25.054 [main] DynamicArray - Container: 7: null
+[DEBUG] 2017-11-23 19:14:25.054 [main] DynamicArray - Container: 8: null
+[DEBUG] 2017-11-23 19:14:25.054 [main] DynamicArrayTester - Array at 0: SecondAdd
+[DEBUG] 2017-11-23 19:14:25.054 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.054 [main] DynamicArrayTester - Array size: 2
+[DEBUG] 2017-11-23 19:14:25.055 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.055 [main] DynamicArrayTester - arraySize1: 10
+[DEBUG] 2017-11-23 19:14:25.055 [main] DynamicArray - Hit the copy: 1
+[DEBUG] 2017-11-23 19:14:25.055 [main] DynamicArray - Capacity: 20
+[DEBUG] 2017-11-23 19:14:25.055 [main] DynamicArray - new array length: 20
+[DEBUG] 2017-11-23 19:14:25.056 [main] DynamicArray - new array: Testing
+[DEBUG] 2017-11-23 19:14:25.056 [main] DynamicArray - new array: Testing1
+[DEBUG] 2017-11-23 19:14:25.056 [main] DynamicArray - new array: Testing2
+[DEBUG] 2017-11-23 19:14:25.056 [main] DynamicArray - new array: Testing3
+[DEBUG] 2017-11-23 19:14:25.056 [main] DynamicArray - new array: Testing4
+[DEBUG] 2017-11-23 19:14:25.056 [main] DynamicArray - new array: Testing5
+[DEBUG] 2017-11-23 19:14:25.056 [main] DynamicArray - new array: Testing6
+[DEBUG] 2017-11-23 19:14:25.056 [main] DynamicArray - new array: Testing7
+[DEBUG] 2017-11-23 19:14:25.057 [main] DynamicArray - new array: Testing8
+[DEBUG] 2017-11-23 19:14:25.057 [main] DynamicArray - new array: Testing9
+[DEBUG] 2017-11-23 19:14:25.057 [main] DynamicArray - end of copy
+[DEBUG] 2017-11-23 19:14:25.057 [main] DynamicArray - new size: 10
+[DEBUG] 2017-11-23 19:14:25.057 [main] DynamicArrayTester - arraySize2: 11
+[DEBUG] 2017-11-23 19:14:25.057 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.058 [main] DynamicArray - SHIFTING: 0: null
+[DEBUG] 2017-11-23 19:14:25.058 [main] DynamicArray - Container: 1: null
+[DEBUG] 2017-11-23 19:14:25.058 [main] DynamicArray - Container: 2: null
+[DEBUG] 2017-11-23 19:14:25.058 [main] DynamicArray - Container: 3: null
+[DEBUG] 2017-11-23 19:14:25.058 [main] DynamicArray - Container: 4: null
+[DEBUG] 2017-11-23 19:14:25.058 [main] DynamicArray - Container: 5: null
+[DEBUG] 2017-11-23 19:14:25.058 [main] DynamicArray - Container: 6: null
+[DEBUG] 2017-11-23 19:14:25.058 [main] DynamicArray - Container: 7: null
+[DEBUG] 2017-11-23 19:14:25.059 [main] DynamicArray - Container: 8: null
+[DEBUG] 2017-11-23 19:14:25.059 [main] DynamicArray - new size: 0
+[DEBUG] 2017-11-23 19:14:25.059 [main] DynamicArray - new size: 0

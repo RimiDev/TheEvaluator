@@ -1,16 +1,20 @@
 package com.rimidev.array;
 
+import com.rimidev.interfaces.MyQueue;
+import com.rimidev.interfaces.MyStack;
 import java.util.Arrays;
-import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * This is a custom made Array that mimics the commonly used ArrayList in the
+ * Collections.
+ * Consists of constructors, add, remove, set, get, size, toString.
+ * With private methods to aide these methods, copy and shift.
  * @author maximelacasse
  * @version 1.0
  */
-public class DynamicArray <T>{
+public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
     
     //Logger for debugging.
     private final Logger log = LoggerFactory.getLogger(
@@ -121,14 +125,6 @@ public class DynamicArray <T>{
         }
         return -1;
     }
-
-    /**
-     * Remove the object at the end of the container.
-     * Decrease the size variable.
-     */   
-    public void remove (){
-        shift(--size,-1);
-    }
     
     /**
      * Remove the object at the index position.
@@ -233,6 +229,67 @@ public class DynamicArray <T>{
         }                
     } // End of shift
 
+
+    @Override
+    public void push(T t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public T pop() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public T peek() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public T element() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     /**
+     * Remove the object at the end of the container.
+     * Decrease the size variable.
+     */
+    @Override
+    public T remove (){
+        shift(--size,-1);
+        return null;
+    }
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 71 * hash + Arrays.deepHashCode(this.container);
+        hash = 71 * hash + this.size;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DynamicArray<?> other = (DynamicArray<?>) obj;
+        if (this.size != other.size) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.container, other.container)) {
+            return false;
+        }
+        return true;
+    }
+
     
     
     
@@ -240,4 +297,7 @@ public class DynamicArray <T>{
     public String toString() {
         return "DynamicArray{" + "container=" + container + ", size=" + size + '}';
     }
+    
+    
+    
 } // End of DynamicArray
