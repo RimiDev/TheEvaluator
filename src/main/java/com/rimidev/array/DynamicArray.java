@@ -200,7 +200,7 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      * @param index The position where the shifting to the right will occur
      * @param shiftPosition The integer to be shifting the array.
      */
-    private void shift(int index, int add){
+    private T shift(int index, int add){
         //Capture the length of the container before re-creating it.
         int capacity = this.container.length;
         //Create a temporary array.
@@ -212,7 +212,7 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
             
             if (i == index){
                 //Leaves the position at index empty, and adds the rest on the right of it.
-                //this.container[i+shiftPosition] = tempArray[i]; 
+                //this.container[i+1] = tempArray[i]; 
                 if (add == 1){
                     this.container[i+1] = tempArray[i];
                     i++;
@@ -226,28 +226,39 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
                 log.debug("Container: " + i + ": " + this.container[i]);
             }       
             
-        }                
+        } 
+        return (T) tempArray[index];
     } // End of shift
 
-
+    /**
+     * Adds the object at the end of the stack.
+     * @param t The object that is being added to the stack.
+     */
     @Override
     public void push(T t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        add(t);
     }
-
+    /**
+     * Removes the last member of the stack.
+     * @return The removed object.
+     */
     @Override
     public T pop() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return remove();
     }
-
+    /**
+     * Looks at the last member of the Stack.
+     * @return 
+     */
     @Override
     public T peek() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (T) this.container[size];
     }
-
+    
     @Override
     public T element() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (T) this.container[0];
+    
     }
     
      /**
@@ -256,8 +267,7 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      */
     @Override
     public T remove (){
-        shift(--size,-1);
-        return null;
+        return shift(--size,-1);
     }
     
     
@@ -289,10 +299,7 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
         }
         return true;
     }
-
-    
-    
-    
+  
     @Override
     public String toString() {
         return "DynamicArray{" + "container=" + container + ", size=" + size + '}';
