@@ -30,11 +30,18 @@ public class InfixToPostfixConverter {
     }
     
     /**
-     * Constructor with 1 param, assigning each to the local variables.
+     * Constructor with 3 paramas, assigning each to the local variables.
+     * @param postfixQueue
+     * @param operatorStack
      * @param expressionArray 
      */
-    public InfixToPostfixConverter(DynamicArray expressionArray){       
-        this.expressionArray = expressionArray;       
+    public InfixToPostfixConverter(DynamicArray postfixQueue,
+            DynamicArray operatorStack, DynamicArray expressionArray){
+        
+        this.postfixQueue = postfixQueue;
+        this.operatorStack = operatorStack;
+        this.expressionArray = expressionArray;
+        
     }
     
     /**
