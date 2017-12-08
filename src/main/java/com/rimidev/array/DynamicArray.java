@@ -44,14 +44,13 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      */
     public void add(T obj){
         if (size == this.container.length){
-            log.debug("Hit the copy: " + (this.container.length - size+1));
             //If we add this to the end, then the container will be maximized, need to double
             //the size before proceeding.
             copy(this.container.length*2); //Copies the array to a new array with doubled size.
         }
-        log.debug("new size: " + size);
         this.container[size] = obj;
         size++;
+                getArray(this.container);
     }
     
     /**
@@ -64,6 +63,7 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      * @param t 
      */
     public void add(int index, T t) {
+
         if (index > size){
             //Cannot add a value that is at an index greater than the size.
             throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
@@ -90,7 +90,7 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
            copy(this.container.length*2); //Copies the array to a new array with doubled size.
         }
         //2. Shift all the proceeding objects from index +1 positions.
-        shift(index,1);
+        shift(index,1,0);
         
         //3. Add the object to the desired index position.
         this.container[index] = t; 
@@ -131,9 +131,9 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      * Decrease the size variable.
      * @param index 
      */
-    public void remove (int index) {
-        shift(index,-1); //Recreate the container array to not have the object in the index position.
+    public T remove (int index) {
         size--; //Decrease the size.
+        return shift(index,-1,0); //Recreate the container array to not have the object in the index position.
     }
 
     /**
@@ -183,15 +183,11 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      */
     private void copy(int capacity){
         Object[] tempArray = this.container;
-        log.debug("Capacity: " + capacity);
         this.container = new Object[capacity];
-        log.debug("new array length: " + this.container.length);
-        
+
         for (int i = 0; i < size; i++){
             this.container[i] = tempArray[i];
-            log.debug("new array: " + this.container[i]);
         }
-        log.debug("end of copy");
         
     }
     /**
@@ -200,33 +196,63 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      * @param index The position where the shifting to the right will occur
      * @param shiftPosition The integer to be shifting the array.
      */
-    private T shift(int index, int add){
+    private T shift(int index, int add, int pop){
+        
         //Capture the length of the container before re-creating it.
-        int capacity = this.container.length;
+        //Depending if its a remove or an add, it will have different capacities.
+        //Remove will have 1 less, and add will be the capacity that the container presently has.
+        int capacity;
+        if (add == 1) {
+            capacity = this.container.length;
+        } else {
+            capacity = this.container.length-1;
+        }
         //Create a temporary array.
         Object[] tempArray = this.container;
         //Recreate the container.
-        this.container = new Object[capacity];
+        this.container = new Object[this.container.length];
         
-        for (int i = 0; i < this.container.length-1; i++ ){
+        if (pop == 1){
+            
+            for (int i = index-1; i >= 0; i--){
+
+                log.debug("i " + i);
+                    this.container[i] = tempArray[i];
+                    log.debug("Container at i: " + this.container[i]);
+                
+            }
+
+        } else {
+        
+        for (int i = 0; i < capacity-1; i++ ){
+            
+            log.debug("IN ARRAY IS: " + tempArray[i]);
+            //log.debug("i is: " + i);
             
             if (i == index){
                 //Leaves the position at index empty, and adds the rest on the right of it.
                 //this.container[i+1] = tempArray[i]; 
                 if (add == 1){
-                    this.container[i+1] = tempArray[i];
-                    i++;
-                    log.debug("Container: " + i + ": " + this.container[3]);
-                    
+                    this.container[++i] = tempArray[i];                    
+                } else {
+                    this.container[i] = tempArray[i+1];
                 }
-                log.debug("SHIFTING: " + i + ": " + this.container[i]);
             } else {
+                if (add == 1){
                 //Adds all the objects from the left of the index into the container.
-                this.container[i] = tempArray[i];
-                log.debug("Container: " + i + ": " + this.container[i]);
-            }       
+                  this.container[i] = tempArray[i];
+                } else {
+                    if (index < i){
+                  this.container[i] = tempArray[i+1];
+                    } else {
+                       this.container[i] = tempArray[i+1];
+                    }
+                } 
             
-        } 
+            }
+        }
+    }
+        
         return (T) tempArray[index];
     } // End of shift
 
@@ -244,7 +270,12 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      */
     @Override
     public T pop() {
-        return remove();
+        String indexRemoved;
+        log.debug("size is before: " + size);
+          indexRemoved = this.container[--size].toString();
+        log.debug("size is after: " + size);
+        shift(size,-1,1);
+        return (T) indexRemoved;
     }
     /**
      * Looks at the last member of the Stack.
@@ -252,7 +283,7 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      */
     @Override
     public T peek() {
-        return (T) this.container[size];
+        return (T) this.container[size - 1];
     }
     
     @Override
@@ -266,8 +297,16 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
      * Decrease the size variable.
      */
     @Override
-    public T remove (){
-        return shift(--size,-1);
+    public T remove(){
+        Object indexRemoved = this.container[0];
+                log.debug("index: "+indexRemoved);
+
+        shift(0,-1,0);
+        log.debug("length " + this.container.length);
+                log.debug("size " + size);
+
+        
+        return (T) indexRemoved;
     }
     
     
@@ -304,6 +343,14 @@ public class DynamicArray <T> implements MyStack<T>, MyQueue<T>{
     public String toString() {
         return "DynamicArray{" + "container=" + container + ", size=" + size + '}';
     }
+    
+        
+        public void getArray(Object[] s){
+        for (int i = 0; i < s.length; i++){
+            log.debug("ARRAY: " + s[i]);
+        }
+    }
+
     
     
     

@@ -1,9 +1,11 @@
 package com.rimidev.evaluator;
 
 import com.rimidev.array.DynamicArray;
-import com.rimidev.converter.InfixToPostfixConverter;
 import com.rimidev.interfaces.MyQueue;
 import com.rimidev.interfaces.MyStack;
+import static java.lang.Double.parseDouble;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This is used to evaluate the postfix expression.
@@ -20,7 +22,11 @@ public class Evaluator {
     MyStack<String> operandStack = new DynamicArray<>();
     
     //Expression Array
-    DynamicArray<String> expressionArray = new DynamicArray<>();
+    MyQueue<String> expressionArray = new DynamicArray<>();
+    
+    //Logger for debugging.
+    private final Logger log = LoggerFactory.getLogger(
+            this.getClass().getName());
     
     //Default constructor
     public Evaluator(){
@@ -29,20 +35,15 @@ public class Evaluator {
         this.expressionArray = null;
     }
     
-    /* Constructor with 3 paramas, assigning each to the local variables.
+    /* Constructor that takes in the postfixQueue that is ready to be evaluated.
      * @param postfixQueue
-     * @param operatorStack
-     * @param expressionArray 
      */
-    public Evaluator(DynamicArray postfixQueue,
-                     DynamicArray operatorStack, DynamicArray expressionArray) {
+    public Evaluator(MyQueue postfixQueue) {
         this.postfixQueue = postfixQueue;
-        this.operandStack = operatorStack;
-        this.expressionArray = expressionArray;
-
+        log.debug("postfixInEvaluator: " + this.postfixQueue.size());
     }
     
-    public void evaluate(){
+    public double evaluate(){
         
         /**
          * Iterate through the postfixQueue
@@ -56,8 +57,12 @@ public class Evaluator {
          * 5. Place the result back into the operandStack.
          * Rinse, repeat until the postfixQueue is empty.
         **/
-        for (int i = 0; i < postfixQueue.size(); i++){
+        while (postfixQueue.element() != null){    
+            log.debug("removing in evaluate");
             String stringAtIndex = postfixQueue.remove();
+            log.debug("in loop: " + stringAtIndex);
+            log.debug("size: " + operandStack.size());
+
             //Checks if the popped String is an operand or operator.
             if (isOperator(stringAtIndex) == 0) {
                 //popped String is operand.
@@ -68,18 +73,26 @@ public class Evaluator {
                 //Check if there's at least two Strings in the operand stack
                 //to perform the evaluation.
                 if (operandStack.size() < 2){
+                    log.debug("what is up size operand");
                     throw new IndexOutOfBoundsException("There's not enough operands in the"
                             + "operand stack to use the operator with!");
                 }
                 //Perform the evaluation.
+                log.debug("what is it second?: " + operandStack.peek());
                 Double secondValue = Double.valueOf(operandStack.pop());
+                log.debug("secondValue: " + secondValue);
+                log.debug("what is it first?" + operandStack.peek());
                 Double firstValue = Double.valueOf(operandStack.pop());
+                log.debug("firstValue: " + firstValue);
                 Double result = calculate(firstValue,secondValue,isOperator(stringAtIndex));
+                log.debug("result: " + result);
                 //Now that we got the result, we add it to the operandStack for
                 //further results OR it's the final result.
                 operandStack.push(result.toString());
             }
-        }
+            
+        } // end of loop
+        return parseDouble(operandStack.pop());
         
     }
     
@@ -92,7 +105,7 @@ public class Evaluator {
      * @param operator
      * @return
      */
-    public double calculate(double firstValue, double secondValue, int operator) {
+    private double calculate(double firstValue, double secondValue, int operator) {
         switch (operator){
             case 1: return (firstValue + secondValue); //Addition
             case 2: return (firstValue - secondValue); //Subtration
@@ -115,21 +128,29 @@ public class Evaluator {
      * 4 -> / (division)
      */
         public int isOperator(String s){
+            
+        //Operator level
+        int operatorLevel;
+        log.debug("what is s: " + s);
         //Checks if the string 's' is an operator.
         switch (s) {
-            case "+": return 1;
-            case "-": return 2;
-            case "*": return 3;
-            case "/": return 4;
-            default: return 0;
+            case "+": operatorLevel = 1;
+                      break;
+            case "-": operatorLevel = 2;
+                      break;
+            case "*": operatorLevel = 3;
+                      break;
+            case "/": operatorLevel = 4;
+                      break;
+            default: operatorLevel = 0;
+                     break;
             
         }
         
+        log.debug("what is operator: " + operatorLevel);
+        return operatorLevel;
      
     } // End of isOperator
-    
-    
-    
-    
+          
     
 }

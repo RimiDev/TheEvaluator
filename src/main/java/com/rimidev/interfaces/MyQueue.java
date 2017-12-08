@@ -14,7 +14,5 @@ public interface MyQueue<T> {
     T element();//Peek at the front.
     
     int size();//Returns the size of the Queue.
-    
-    
-    
+ 
 }
