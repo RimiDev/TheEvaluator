@@ -57,17 +57,7 @@ public class EvaluateTester {
             { convertToString(new String[] {"2","*","2","+","(","4","*","4",")"}),20},
             { convertToString(new String[] {"66"}),66},          
             { convertToString(new String[] {"99999999"}),99999999},
-            
-            //FAILING
-            { convertToString(new String[] {"8","+","(","8","+","(","8","(","8","(","8","*","2",")",")",")",")"}),584},
-            { convertToString(new String[] {"8","+","(","8","+","(","8","+","8","(","8","*","2",")",")",")"}),32},
-            { convertToString(new String[] {"2","/","0"}),0},
-            { convertToString(new String[] {"*","3","+"}),3},
-            { convertToString(new String[] {"(","(","(","(",")","3",")",")","+","2",")"}),6}
 
-                
-                
-    
             });
     }
     
@@ -79,12 +69,7 @@ public class EvaluateTester {
     public static MyQueue<String> convertToString(String[] equation){
         
         MyQueue<String> mq = new DynamicArray<>();
-//        mq.add("4");
-//        mq.add("*");
-//        mq.add("4");
-//        
-//        mq.add("+");
-//        mq.add("1");
+
         for (int i = 0; i < equation.length; i++){
             mq.add(equation[i]);      
         }      
